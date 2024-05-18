@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Connect to the database
     $servername = 'localhost';
     $db_username = "root";
     $db_password = "";
