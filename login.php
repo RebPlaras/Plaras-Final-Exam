@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         $stored_password = $row['password'];
-
-        if (password_verify($password, $stored_password)) {
+        
+        if ($password === $stored_password) {
             $_SESSION['username'] = $username;
             header("Location: order_page.php");
             exit;
