@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Check if the username exists in the database
     $stmt = $conn->prepare("SELECT password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -25,8 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         $stored_password = $row['password'];
-        
-        // Verify the password
+
         if (password_verify($password, $stored_password)) {
             $_SESSION['username'] = $username;
             header("Location: order_page.php");
